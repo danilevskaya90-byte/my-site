@@ -156,6 +156,18 @@
             background: var(--primary);
             color: var(--white);
         }
+        /* Advertisement Banner */
+        .ad-banner {
+            background: linear-gradient(135deg, #8fa0eb 0%, #c09ce3 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem 0;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
 
         /* Main Content */
         main {
@@ -452,6 +464,16 @@
         </div>
     </nav>
 
+    <!-- Advertisement Banner -->
+    <div class="container">
+        <div class="ad-banner animate">
+            <div class="ad-content">
+                <h3 class="ad-title" data-key="ad-title">🚀 Здесь может быть Ваша реклама!</h3>
+                <p class="ad-description" data-key="ad-description">...</p>
+                <button class="ad-button" data-key="ad-button">Перейти</button>
+            </div>
+        </div>
+    </div>
     <!-- Main Content -->
     <main class="container">
         <!-- Weekly Menu Section -->
@@ -628,6 +650,11 @@
                 'nav-menu': 'Wochenmenü',
                 'nav-tips': 'Nützliche Tipps',
                 'nav-about': 'Über die Website🧡',
+
+                // Advertisement Banner
+                'ad-title': '🚀 Hier könnte Ihre Werbung sein!',
+                'ad-description': '...!',
+                'ad-button': 'den Knopf drücken',
                 
                 // Menu Section
                 'menu-title': 'Wochenmenü 🥗',
@@ -716,6 +743,11 @@
                 'nav-tips': 'Полезные советы',
                 'nav-about': 'О сайте🧡',
                 
+                // Advertisement Banner
+                'ad-title': '🚀 Здесь может быть Ваша реклама!',
+                'ad-description': '...',
+                'ad-button': 'перейти',
+
                 // Menu Section
                 'menu-title': 'Меню на неделю 🥗',
                 'monday': 'Понедельник',
