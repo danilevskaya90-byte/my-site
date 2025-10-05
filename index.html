@@ -37,6 +37,39 @@
             padding: 0 20px;
         }
 
+        /* Language Selector */
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+
+        .language-btn {
+            background: none;
+            border: none;
+            padding: 5px 10px;
+            margin: 0 2px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .language-btn:not(.active):hover {
+            background: var(--primary-light);
+            color: var(--white);
+        }
+
         /* Header Styles */
         header {
             background: linear-gradient(120deg, var(--primary), var(--dark));
@@ -253,6 +286,32 @@
             font-weight: 600;
         }
 
+        /* About Section */
+        #about {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .about-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .about-text {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
         /* Footer */
         footer {
             background: linear-gradient(120deg, var(--dark), var(--primary));
@@ -291,6 +350,12 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .language-selector {
+                top: 15px;
+                right: 15px;
+                padding: 6px 10px;
+            }
+            
             .header-content h1 {
                 font-size: 2.2rem;
             }
@@ -311,6 +376,17 @@
         }
 
         @media (max-width: 480px) {
+            .language-selector {
+                top: 10px;
+                right: 10px;
+                padding: 4px 8px;
+            }
+            
+            .language-btn {
+                padding: 3px 6px;
+                font-size: 0.8rem;
+            }
+            
             .header-content h1 {
                 font-size: 1.8rem;
             }
@@ -349,12 +425,18 @@
     </style>
 </head>
 <body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button class="language-btn active" data-lang="ru">RU</button>
+        <button class="language-btn" data-lang="de">DE</button>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <h1>🌿 Здоровое Питание</h1>
-                <p>Ваш милый гид к прекрасному самочувствию и энергии каждый день!</p>
+                <h1 data-key="header-title">🌿 Здоровое Питание</h1>
+                <p data-key="header-subtitle">Ваш милый гид к прекрасному самочувствию и энергии каждый день!</p>
             </div>
         </div>
     </header>
@@ -363,9 +445,9 @@
     <nav>
         <div class="container">
             <div class="nav-container">
-                <a href="#menu" class="nav-link active">Меню на неделю</a>
-                <a href="#tips" class="nav-link">Полезные советы</a>
-                <a href="#about" class="nav-link">О сайте🧡</a>
+                <a href="#menu" class="nav-link active" data-key="nav-menu">Меню на неделю</a>
+                <a href="#tips" class="nav-link" data-key="nav-tips">Полезные советы</a>
+                <a href="#about" class="nav-link" data-key="nav-about">О сайте🧡</a>
             </div>
         </div>
     </nav>
@@ -374,155 +456,377 @@
     <main class="container">
         <!-- Weekly Menu Section -->
         <section id="menu" class="section">
-            <h2 class="section-title">Меню на неделю 🥗</h2>
+            <h2 class="section-title" data-key="menu-title">Меню на неделю 🥗</h2>
             <div class="week-menu">
+                <!-- Monday -->
                 <div class="day-card animate">
                     <div class="day-header">
                         <div class="day-number">1</div>
-                        <div class="day-name">Понедельник</div>
+                        <div class="day-name" data-key="monday">Понедельник</div>
                     </div>
-                    <div class="meal"><span class="meal-time">Завтрак:</span> Овсяная каша на воде или молоке (2-2.5%) с бананом и чайной ложкой меда.</div>
-                    <div class="meal"><span class="meal-time">Обед:</span> Гречневая каша с куриной котлетой на пару. Салат из свежей капусты с морковью и оливковым маслом.</div>
-                    <div class="meal"><span class="meal-time">Ужин:</span> Запеченная белая рыба (треска, минтай) с овощами (брокколи, цветная капуста, морковь)</div>
-                    <div class="meal"><span class="meal-time">Перекус:</span> Яблоко и горсть орехов</div>
+                    <div class="meal"><span class="meal-time" data-key="breakfast">Завтрак:</span> <span data-key="mon-breakfast">Овсяная каша на воде или молоке (2-2.5%) с бананом и чайной ложкой меда.</span></div>
+                    <div class="meal"><span class="meal-time" data-key="lunch">Обед:</span> <span data-key="mon-lunch">Гречневая каша с куриной котлетой на пару. Салат из свежей капусты с морковью и оливковым маслом.</span></div>
+                    <div class="meal"><span class="meal-time" data-key="dinner">Ужин:</span> <span data-key="mon-dinner">Запеченная белая рыба (треска, минтай) с овощами (брокколи, цветная капуста, морковь)</span></div>
+                    <div class="meal"><span class="meal-time" data-key="snack">Перекус:</span> <span data-key="mon-snack">Яблоко и горсть орехов</span></div>
                 </div>
 
+                <!-- Tuesday -->
                 <div class="day-card animate delay-1">
                     <div class="day-header">
                         <div class="day-number">2</div>
-                        <div class="day-name">Вторник</div>
+                        <div class="day-name" data-key="tuesday">Вторник</div>
                     </div>
-                    <div class="meal"><span class="meal-time">Завтрак:</span> Творог с фруктами и льняными семенами</div>
-                    <div class="meal"><span class="meal-time">Обед:</span> Бурый рис с тушеной говядиной и овощами (лук, морковь, сельдерей)</div>
-                    <div class="meal"><span class="meal-time">Ужин:</span> Тушеные овощи с индейкой</div>
-                    <div class="meal"><span class="meal-time">Перекус:</span> Йогурт без сахара</div>
+                    <div class="meal"><span class="meal-time" data-key="breakfast">Завтрак:</span> <span data-key="tue-breakfast">Творог с фруктами и льняными семенами</span></div>
+                    <div class="meal"><span class="meal-time" data-key="lunch">Обед:</span> <span data-key="tue-lunch">Бурый рис с тушеной говядиной и овощами (лук, морковь, сельдерей)</span></div>
+                    <div class="meal"><span class="meal-time" data-key="dinner">Ужин:</span> <span data-key="tue-dinner">Тушеные овощи с индейкой</span></div>
+                    <div class="meal"><span class="meal-time" data-key="snack">Перекус:</span> <span data-key="tue-snack">Йогурт без сахара</span></div>
                 </div>
 
+                <!-- Wednesday -->
                 <div class="day-card animate delay-2">
                     <div class="day-header">
                         <div class="day-number">3</div>
-                        <div class="day-name">Среда</div>
+                        <div class="day-name" data-key="wednesday">Среда</div>
                     </div>
-                    <div class="meal"><span class="meal-time">Завтрак:</span> Смузи из банана, груши, овсяных хлопьев и кефира/йогурта.</div>
-                    <div class="meal"><span class="meal-time">Обед:</span> Суп-пюре из тыквы с цельнозерновым хлебом</div>
-                    <div class="meal"><span class="meal-time">Ужин:</span> Запеченные овощи с тофу</div>
-                    <div class="meal"><span class="meal-time">Перекус:</span> Салат из листовой зелени, огурца и авокадо, заправленный йогуртом. Отварные креветки.</div>
+                    <div class="meal"><span class="meal-time" data-key="breakfast">Завтрак:</span> <span data-key="wed-breakfast">Смузи из банана, груши, овсяных хлопьев и кефира/йогурта.</span></div>
+                    <div class="meal"><span class="meal-time" data-key="lunch">Обед:</span> <span data-key="wed-lunch">Суп-пюре из тыквы с цельнозерновым хлебом</span></div>
+                    <div class="meal"><span class="meal-time" data-key="dinner">Ужин:</span> <span data-key="wed-dinner">Запеченные овощи с тофу</span></div>
+                    <div class="meal"><span class="meal-time" data-key="snack">Перекус:</span> <span data-key="wed-snack">Салат из листовой зелени, огурца и авокадо, заправленный йогуртом. Отварные креветки.</span></div>
                 </div>
 
+                <!-- Thursday -->
                 <div class="day-card animate delay-3">
                     <div class="day-header">
                         <div class="day-number">4</div>
-                        <div class="day-name">Четверг</div>
+                        <div class="day-name" data-key="thursday">Четверг</div>
                     </div>
-                    <div class="meal"><span class="meal-time">Завтрак:</span> Гречневая каша с ягодами</div>
-                    <div class="meal"><span class="meal-time">Обед:</span> Лосось на гриле с салатом из рукколы</div>
-                    <div class="meal"><span class="meal-time">Ужин:</span> Овощное рагу с чечевицей</div>
-                    <div class="meal"><span class="meal-time">Перекус:</span> Груша и миндаль</div>
+                    <div class="meal"><span class="meal-time" data-key="breakfast">Завтрак:</span> <span data-key="thu-breakfast">Гречневая каша с ягодами</span></div>
+                    <div class="meal"><span class="meal-time" data-key="lunch">Обед:</span> <span data-key="thu-lunch">Лосось на гриле с салатом из рукколы</span></div>
+                    <div class="meal"><span class="meal-time" data-key="dinner">Ужин:</span> <span data-key="thu-dinner">Овощное рагу с чечевицей</span></div>
+                    <div class="meal"><span class="meal-time" data-key="snack">Перекус:</span> <span data-key="thu-snack">Груша и миндаль</span></div>
                 </div>
 
+                <!-- Friday -->
                 <div class="day-card animate delay-4">
                     <div class="day-header">
                         <div class="day-number">5</div>
-                        <div class="day-name">Пятница</div>
+                        <div class="day-name" data-key="friday">Пятница</div>
                     </div>
-                    <div class="meal"><span class="meal-time">Завтрак:</span> Французский тост из цельнозернового хлеба</div>
-                    <div class="meal"><span class="meal-time">Обед:</span> Запеченная куриная грудка с картофелем (в мундире) и салатом из свеклы (без майонеза).</div>
-                    <div class="meal"><span class="meal-time">Ужин:</span> Салат из свеклы с козьим сыром</div>
-                    <div class="meal"><span class="meal-time">Перекус:</span> Кефир и ягоды</div>
+                    <div class="meal"><span class="meal-time" data-key="breakfast">Завтрак:</span> <span data-key="fri-breakfast">Французский тост из цельнозернового хлеба</span></div>
+                    <div class="meal"><span class="meal-time" data-key="lunch">Обед:</span> <span data-key="fri-lunch">Запеченная куриная грудка с картофелем (в мундире) и салатом из свеклы (без майонеза).</span></div>
+                    <div class="meal"><span class="meal-time" data-key="dinner">Ужин:</span> <span data-key="fri-dinner">Салат из свеклы с козьим сыром</span></div>
+                    <div class="meal"><span class="meal-time" data-key="snack">Перекус:</span> <span data-key="fri-snack">Кефир и ягоды</span></div>
                 </div>
 
+                <!-- Saturday -->
                 <div class="day-card animate delay-5">
                     <div class="day-header">
                         <div class="day-number">6</div>
-                        <div class="day-name">Суббота</div>
+                        <div class="day-name" data-key="saturday">Суббота</div>
                     </div>
-                    <div class="meal"><span class="meal-time">Завтрак:</span> Омлет с овощами и авокадо</div>
-                    <div class="meal"><span class="meal-time">Обед:</span> Суп из чечевицы с зеленью</div>
-                    <div class="meal"><span class="meal-time">Ужин:</span> Запеченные кабачки с помидорами</div>
-                    <div class="meal"><span class="meal-time">Перекус:</span> Апельсин и грецкие орехи</div>
+                    <div class="meal"><span class="meal-time" data-key="breakfast">Завтрак:</span> <span data-key="sat-breakfast">Омлет с овощами и авокадо</span></div>
+                    <div class="meal"><span class="meal-time" data-key="lunch">Обед:</span> <span data-key="sat-lunch">Суп из чечевицы с зеленью</span></div>
+                    <div class="meal"><span class="meal-time" data-key="dinner">Ужин:</span> <span data-key="sat-dinner">Запеченные кабачки с помидорами</span></div>
+                    <div class="meal"><span class="meal-time" data-key="snack">Перекус:</span> <span data-key="sat-snack">Апельсин и грецкие орехи</span></div>
                 </div>
 
+                <!-- Sunday -->
                 <div class="day-card animate delay-6">
                     <div class="day-header">
                         <div class="day-number">7</div>
-                        <div class="day-name">Воскресенье</div>
+                        <div class="day-name" data-key="sunday">Воскресенье</div>
                     </div>
-                    <div class="meal"><span class="meal-time">Завтрак:</span> Мюсли с йогуртом и фруктами</div>
-                    <div class="meal"><span class="meal-time">Обед:</span> Куриные котлеты на пару с овощами</div>
-                    <div class="meal"><span class="meal-time">Ужин:</span> Овощной суп-пюре с травами</div>
-                    <div class="meal"><span class="meal-time">Перекус:</span> Банан и арахисовая паста</div>
+                    <div class="meal"><span class="meal-time" data-key="breakfast">Завтрак:</span> <span data-key="sun-breakfast">Мюсли с йогуртом и фруктами</span></div>
+                    <div class="meal"><span class="meal-time" data-key="lunch">Обед:</span> <span data-key="sun-lunch">Куриные котлеты на пару с овощами</span></div>
+                    <div class="meal"><span class="meal-time" data-key="dinner">Ужин:</span> <span data-key="sun-dinner">Овощной суп-пюре с травами</span></div>
+                    <div class="meal"><span class="meal-time" data-key="snack">Перекус:</span> <span data-key="sun-snack">Банан и арахисовая паста</span></div>
                 </div>
             </div>
         </section>
 
         <!-- Tips Section -->
         <section id="tips" class="section">
-            <h2 class="section-title">Полезные советы 💡</h2>
+            <h2 class="section-title" data-key="tips-title">Полезные советы 💡</h2>
             <div class="tips-grid">
                 <div class="tip-card animate">
                     <div class="tip-icon">
                         <i class="fas fa-glass-water"></i>
                     </div>
-                    <h3 class="tip-title">Пейте воду</h3>
-                    <p>Выпивайте 1.5-2 литра воды в день. Начинайте утро со стакана воды с лимоном!</p>
+                    <h3 class="tip-title" data-key="tip1-title">Пейте воду</h3>
+                    <p data-key="tip1-text">Выпивайте 1.5-2 литра воды в день. Начинайте утро со стакана воды с лимоном!</p>
                 </div>
 
                 <div class="tip-card animate delay-1">
                     <div class="tip-icon">
                         <i class="fas fa-utensils"></i>
                     </div>
-                    <h3 class="tip-title">Маленькие порции</h3>
-                    <p>Ешьте небольшими порциями 4-5 раз в день. Это улучшает пищеварение и обмен веществ.</p>
+                    <h3 class="tip-title" data-key="tip2-title">Маленькие порции</h3>
+                    <p data-key="tip2-text">Ешьте небольшими порциями 4-5 раз в день. Это улучшает пищеварение и обмен веществ.</p>
                 </div>
 
                 <div class="tip-card animate delay-2">
                     <div class="tip-icon">
                         <i class="fas fa-seedling"></i>
                     </div>
-                    <h3 class="tip-title">Больше овощей</h3>
-                    <p>Половина вашего тарелки должна состоять из овощей. Они богаты витаминами и клетчаткой!</p>
+                    <h3 class="tip-title" data-key="tip3-title">Больше овощей</h3>
+                    <p data-key="tip3-text">Половина вашего тарелки должна состоять из овощей. Они богаты витаминами и клетчаткой!</p>
                 </div>
 
                 <div class="tip-card animate delay-3">
                     <div class="tip-icon">
                         <i class="fas fa-moon"></i>
                     </div>
-                    <h3 class="tip-title">Не ешьте перед сном</h3>
-                    <p>Последний прием пищи должен быть за 2-3 часа до сна. Это улучшает качество сна.</p>
+                    <h3 class="tip-title" data-key="tip4-title">Не ешьте перед сном</h3>
+                    <p data-key="tip4-text">Последний прием пищи должен быть за 2-3 часа до сна. Это улучшает качество сна.</p>
                 </div>
                 <div class="tip-card animate delay-4">
                     <div class="tip-icon">
                         <i class="fas fa-plate-wheat"></i>
                     </div>
-                    <h3 class="tip-title">Заготовки</h3>
-                    <p>Планируйте и готовьте заранее. В выходные можно отварить крупы, приготовить фарш, помыть и нарезать овощи для салатов. Это сэкономит время в будни..</p>
+                    <h3 class="tip-title" data-key="tip5-title">Заготовки</h3>
+                    <p data-key="tip5-text">Планируйте и готовьте заранее. В выходные можно отварить крупы, приготовить фарш, помыть и нарезать овощи для салатов. Это сэкономит время в будни.</p>
                 </div>
             </div>
         </section>
-    </main>
-<!-- About Section -->
-<section id="about" class="section">
-    <h2 class="section-title">О сайте🧡</h2>
-    <div class="tips-grid">
-        <div class="tip-card animate">
-            <div class="tip-icon">
-                <i class="fas fa-glass-water"></i>
-    <!-- About -->
-    <section id="about" class="section">
-    <about>
-        <div class="container">
-            <div class="footer-content">
-                <p>🌿 Проект Данилевской Юлии</p>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title" data-key="about-title">О сайте🧡</h2>
+            <div class="about-content animate">
+                <div class="about-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <p class="about-text" data-key="about-text">🌿 Проект Данилевской Юлии</p>
                 <div class="social-links">
                     <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p data-key="footer-text1">🌿 Здоровое питание — это не диета, а образ жизни!</p>
+                <p data-key="footer-text2">Начните сегодня и почувствуйте разницу завтра 💚</p>
+            </div>
         </div>
     </footer>
 
     <script>
+        // Translation data
+        const translations = {
+            de: {
+                // Header
+                'header-title': '🌿 Gesunde Ernährung',
+                'header-subtitle': 'Ihr süßer Leitfaden für Wohlbefinden und Energie jeden Tag!',
+                
+                // Navigation
+                'nav-menu': 'Wochenmenü',
+                'nav-tips': 'Nützliche Tipps',
+                'nav-about': 'Über die Website🧡',
+                
+                // Menu Section
+                'menu-title': 'Wochenmenü 🥗',
+                'monday': 'Montag',
+                'tuesday': 'Dienstag',
+                'wednesday': 'Mittwoch',
+                'thursday': 'Donnerstag',
+                'friday': 'Freitag',
+                'saturday': 'Samstag',
+                'sunday': 'Sonntag',
+                'breakfast': 'Frühstück:',
+                'lunch': 'Mittagessen:',
+                'dinner': 'Abendessen:',
+                'snack': 'Snack:',
+                
+                // Monday meals
+                'mon-breakfast': 'Haferbrei mit Wasser oder Milch (2-2,5%) mit Banane und einem Teelöffel Honig.',
+                'mon-lunch': 'Buchweizenbrei mit gedämpften Hühnerfrikadellen. Salat aus frischem Kohl mit Karotten und Olivenöl.',
+                'mon-dinner': 'Gebackener weißer Fisch (Kabeljau, Seelachs) mit Gemüse (Brokkoli, Blumenkohl, Karotten)',
+                'mon-snack': 'Apfel und eine Handvoll Nüsse',
+                
+                // Tuesday meals
+                'tue-breakfast': 'Hüttenkäse mit Obst und Leinsamen',
+                'tue-lunch': 'Vollkornreis mit geschmortem Rindfleisch und Gemüse (Zwiebel, Karotte, Sellerie)',
+                'tue-dinner': 'Gedünstetes Gemüse mit Truthahn',
+                'tue-snack': 'Zuckerfreier Joghurt',
+                
+                // Wednesday meals
+                'wed-breakfast': 'Smoothie aus Banane, Birne, Haferflocken und Kefir/Joghurt.',
+                'wed-lunch': 'Kürbissuppe mit Vollkornbrot',
+                'wed-dinner': 'Gebackenes Gemüse mit Tofu',
+                'wed-snack': 'Salat aus Blattgemüse, Gurke und Avocado, mit Joghurt gewürzt. Gekochte Garnelen.',
+                
+                // Thursday meals
+                'thu-breakfast': 'Buchweizenbrei mit Beeren',
+                'thu-lunch': 'Gegrillter Lachs mit Rucolasalat',
+                'thu-dinner': 'Gemüseeintopf mit Linsen',
+                'thu-snack': 'Birne und Mandeln',
+                
+                // Friday meals
+                'fri-breakfast': 'Französischer Toast aus Vollkornbrot',
+                'fri-lunch': 'Gebackene Hähnchenbrust mit Pellkartoffeln und Rote-Bete-Salat (ohne Mayonnaise).',
+                'fri-dinner': 'Rote-Bete-Salat mit Ziegenkäse',
+                'fri-snack': 'Kefir und Beeren',
+                
+                // Saturday meals
+                'sat-breakfast': 'Omelett mit Gemüse und Avocado',
+                'sat-lunch': 'Linsensuppe mit Kräutern',
+                'sat-dinner': 'Gebackene Zucchini mit Tomaten',
+                'sat-snack': 'Orange und Walnüsse',
+                
+                // Sunday meals
+                'sun-breakfast': 'Müsli mit Joghurt und Obst',
+                'sun-lunch': 'Gedämpfte Hühnerfrikadellen mit Gemüse',
+                'sun-dinner': 'Gemüsecremesuppe mit Kräutern',
+                'sun-snack': 'Banane und Erdnussbutter',
+                
+                // Tips Section
+                'tips-title': 'Nützliche Tipps 💡',
+                'tip1-title': 'Trinken Sie Wasser',
+                'tip1-text': 'Trinken Sie 1,5-2 Liter Wasser pro Tag. Beginnen Sie Ihren Morgen mit einem Glas Wasser mit Zitrone!',
+                'tip2-title': 'Kleine Portionen',
+                'tip2-text': 'Essen Sie kleine Portionen 4-5 Mal am Tag. Dies verbessert die Verdauung und den Stoffwechsel.',
+                'tip3-title': 'Mehr Gemüse',
+                'tip3-text': 'Die Hälfte Ihres Tellers sollte aus Gemüse bestehen. Sie sind reich an Vitaminen und Ballaststoffen!',
+                'tip4-title': 'Essen Sie nicht vor dem Schlafengehen',
+                'tip4-text': 'Ihre letzte Mahlzeit sollte 2-3 Stunden vor dem Schlafengehen sein. Dies verbessert die Schlafqualität.',
+                'tip5-title': 'Vorbereitungen',
+                'tip5-text': 'Planen und kochen Sie im Voraus. Am Wochenende können Sie Getreide kochen, Hackfleisch zubereiten und Gemüse für Salate waschen und schneiden. Dies spart Zeit an Wochentagen.',
+                
+                // About Section
+                'about-title': 'Über die Website🧡',
+                'about-text': '🌿 Projekt von Danilevskaya Julia',
+                
+                // Footer
+                'footer-text1': '🌿 Gesunde Ernährung ist keine Diät, sondern ein Lebensstil!',
+                'footer-text2': 'Beginnen Sie heute und spüren Sie den Unterschied morgen 💚'
+            },
+            ru: {
+                // Header
+                'header-title': '🌿 Здоровое Питание',
+                'header-subtitle': 'Ваш милый гид к прекрасному самочувствию и энергии каждый день!',
+                
+                // Navigation
+                'nav-menu': 'Меню на неделю',
+                'nav-tips': 'Полезные советы',
+                'nav-about': 'О сайте🧡',
+                
+                // Menu Section
+                'menu-title': 'Меню на неделю 🥗',
+                'monday': 'Понедельник',
+                'tuesday': 'Вторник',
+                'wednesday': 'Среда',
+                'thursday': 'Четверг',
+                'friday': 'Пятница',
+                'saturday': 'Суббота',
+                'sunday': 'Воскресенье',
+                'breakfast': 'Завтрак:',
+                'lunch': 'Обед:',
+                'dinner': 'Ужин:',
+                'snack': 'Перекус:',
+                
+                // Monday meals
+                'mon-breakfast': 'Овсяная каша на воде или молоке (2-2.5%) с бананом и чайной ложкой меда.',
+                'mon-lunch': 'Гречневая каша с куриной котлетой на пару. Салат из свежей капусты с морковью и оливковым маслом.',
+                'mon-dinner': 'Запеченная белая рыба (треска, минтай) с овощами (брокколи, цветная капуста, морковь)',
+                'mon-snack': 'Яблоко и горсть орехов',
+                
+                // Tuesday meals
+                'tue-breakfast': 'Творог с фруктами и льняными семенами',
+                'tue-lunch': 'Бурый рис с тушеной говядиной и овощами (лук, морковь, сельдерей)',
+                'tue-dinner': 'Тушеные овощи с индейкой',
+                'tue-snack': 'Йогурт без сахара',
+                
+                // Wednesday meals
+                'wed-breakfast': 'Смузи из банана, груши, овсяных хлопьев и кефира/йогурта.',
+                'wed-lunch': 'Суп-пюре из тыквы с цельнозерновым хлебом',
+                'wed-dinner': 'Запеченные овощи с тофу',
+                'wed-snack': 'Салат из листовой зелени, огурца и авокадо, заправленный йогуртом. Отварные креветки.',
+                
+                // Thursday meals
+                'thu-breakfast': 'Гречневая каша с ягодами',
+                'thu-lunch': 'Лосось на гриле с салатом из рукколы',
+                'thu-dinner': 'Овощное рагу с чечевицей',
+                'thu-snack': 'Груша и миндаль',
+                
+                // Friday meals
+                'fri-breakfast': 'Французский тост из цельнозернового хлеба',
+                'fri-lunch': 'Запеченная куриная грудка с картофелем (в мундире) и салатом из свеклы (без майонеза).',
+                'fri-dinner': 'Салат из свеклы с козьим сыром',
+                'fri-snack': 'Кефир и ягоды',
+                
+                // Saturday meals
+                'sat-breakfast': 'Омлет с овощами и авокадо',
+                'sat-lunch': 'Суп из чечевицы с зеленью',
+                'sat-dinner': 'Запеченные кабачки с помидорами',
+                'sat-snack': 'Апельсин и грецкие орехи',
+                
+                // Sunday meals
+                'sun-breakfast': 'Мюсли с йогуртом и фруктами',
+                'sun-lunch': 'Куриные котлеты на пару с овощами',
+                'sun-dinner': 'Овощной суп-пюре с травами',
+                'sun-snack': 'Банан и арахисовая паста',
+                
+                // Tips Section
+                'tips-title': 'Полезные советы 💡',
+                'tip1-title': 'Пейте воду',
+                'tip1-text': 'Выпивайте 1.5-2 литра воды в день. Начинайте утро со стакана воды с лимоном!',
+                'tip2-title': 'Маленькие порции',
+                'tip2-text': 'Ешьте небольшими порциями 4-5 раз в день. Это улучшает пищеварение и обмен веществ.',
+                'tip3-title': 'Больше овощей',
+                'tip3-text': 'Половина вашего тарелки должна состоять из овощей. Они богаты витаминами и клетчаткой!',
+                'tip4-title': 'Не ешьте перед сном',
+                'tip4-text': 'Последний прием пищи должен быть за 2-3 часа до сна. Это улучшает качество сна.',
+                'tip5-title': 'Заготовки',
+                'tip5-text': 'Планируйте и готовьте заранее. В выходные можно отварить крупы, приготовить фарш, помыть и нарезать овощи для салатов. Это сэкономит время в будни.',
+                
+                // About Section
+                'about-title': 'О сайте🧡',
+                'about-text': '🌿 Проект Данилевской Юлии',
+                
+                // Footer
+                'footer-text1': '🌿 Здоровое питание — это не диета, а образ жизни!',
+                'footer-text2': 'Начните сегодня и почувствуйте разницу завтра 💚'
+            }
+        };
+
+        // Current language
+        let currentLang = 'ru';
+
+        // Initialize translations
+        function translatePage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data-key attributes
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update title
+            document.title = lang === 'de' ? 'Gesunde Ernährung | Здоровое Питание' : 'Здоровое Питание | Gesunde Ernährung';
+            
+            // Update language buttons
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+        }
+
+        // Language switch event listeners
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                translatePage(lang);
+            });
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -559,12 +863,15 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.day-card, .tip-card').forEach(card => {
+        document.querySelectorAll('.day-card, .tip-card, .about-content').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
         });
+
+        // Initialize with Russian
+        translatePage('ru');
     </script>
 </body>
 </html>
