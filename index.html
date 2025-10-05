@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Здоровое Питание | Милый Гид по Правильному Рациону</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4CAF50;
+            --primary-light: #81C784;
+            --secondary: #FF9800;
+            --accent: #FF5722;
+            --light: #F1F8E9;
+            --dark: #2E7D32;
+            --text: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(120deg, var(--primary), var(--dark));
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -30px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            background: var(--primary-light);
+            color: var(--white);
+        }
+
+        .nav-link.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--dark);
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* Weekly Menu */
+        .week-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .day-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .day-number {
+            background: var(--primary);
+            color: var(--white);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .day-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .meal {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .meal::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .meal-time {
+            font-weight: 600;
+            color: var(--secondary);
+            display: block;
+        }
+
+        /* Tips Section */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tip-card {
+            background: linear-gradient(135deg, var(--light), #e8f5e8);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tip-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .tip-title {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(120deg, var(--dark), var(--primary));
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .nav-link {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header-content p {
+                font-size: 1rem;
+            }
+            
+            main {
+                padding: 2rem 0;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>🌿 Здоровое Питание</h1>
+                <p>Ваш милый гид к прекрасному самочувствию и энергии каждый день!</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#menu" class="nav-link active">Меню на неделю</a>
+                <a href="#tips" class="nav-link">Полезные советы</a>
+                <a href="#about" class="nav-link">О сайте🧡</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Weekly Menu Section -->
+        <section id="menu" class="section">
+            <h2 class="section-title">Меню на неделю 🥗</h2>
+            <div class="week-menu">
+                <div class="day-card animate">
+                    <div class="day-header">
+                        <div class="day-number">1</div>
+                        <div class="day-name">Понедельник</div>
+                    </div>
+                    <div class="meal"><span class="meal-time">Завтрак:</span> Овсяная каша на воде или молоке (2-2.5%) с бананом и чайной ложкой меда.</div>
+                    <div class="meal"><span class="meal-time">Обед:</span> Гречневая каша с куриной котлетой на пару. Салат из свежей капусты с морковью и оливковым маслом.</div>
+                    <div class="meal"><span class="meal-time">Ужин:</span> Запеченная белая рыба (треска, минтай) с овощами (брокколи, цветная капуста, морковь)</div>
+                    <div class="meal"><span class="meal-time">Перекус:</span> Яблоко и горсть орехов</div>
+                </div>
+
+                <div class="day-card animate delay-1">
+                    <div class="day-header">
+                        <div class="day-number">2</div>
+                        <div class="day-name">Вторник</div>
+                    </div>
+                    <div class="meal"><span class="meal-time">Завтрак:</span> Творог с фруктами и льняными семенами</div>
+                    <div class="meal"><span class="meal-time">Обед:</span> Бурый рис с тушеной говядиной и овощами (лук, морковь, сельдерей)</div>
+                    <div class="meal"><span class="meal-time">Ужин:</span> Тушеные овощи с индейкой</div>
+                    <div class="meal"><span class="meal-time">Перекус:</span> Йогурт без сахара</div>
+                </div>
+
+                <div class="day-card animate delay-2">
+                    <div class="day-header">
+                        <div class="day-number">3</div>
+                        <div class="day-name">Среда</div>
+                    </div>
+                    <div class="meal"><span class="meal-time">Завтрак:</span> Смузи из банана, груши, овсяных хлопьев и кефира/йогурта.</div>
+                    <div class="meal"><span class="meal-time">Обед:</span> Суп-пюре из тыквы с цельнозерновым хлебом</div>
+                    <div class="meal"><span class="meal-time">Ужин:</span> Запеченные овощи с тофу</div>
+                    <div class="meal"><span class="meal-time">Перекус:</span> Салат из листовой зелени, огурца и авокадо, заправленный йогуртом. Отварные креветки.</div>
+                </div>
+
+                <div class="day-card animate delay-3">
+                    <div class="day-header">
+                        <div class="day-number">4</div>
+                        <div class="day-name">Четверг</div>
+                    </div>
+                    <div class="meal"><span class="meal-time">Завтрак:</span> Гречневая каша с ягодами</div>
+                    <div class="meal"><span class="meal-time">Обед:</span> Лосось на гриле с салатом из рукколы</div>
+                    <div class="meal"><span class="meal-time">Ужин:</span> Овощное рагу с чечевицей</div>
+                    <div class="meal"><span class="meal-time">Перекус:</span> Груша и миндаль</div>
+                </div>
+
+                <div class="day-card animate delay-4">
+                    <div class="day-header">
+                        <div class="day-number">5</div>
+                        <div class="day-name">Пятница</div>
+                    </div>
+                    <div class="meal"><span class="meal-time">Завтрак:</span> Французский тост из цельнозернового хлеба</div>
+                    <div class="meal"><span class="meal-time">Обед:</span> Запеченная куриная грудка с картофелем (в мундире) и салатом из свеклы (без майонеза).</div>
+                    <div class="meal"><span class="meal-time">Ужин:</span> Салат из свеклы с козьим сыром</div>
+                    <div class="meal"><span class="meal-time">Перекус:</span> Кефир и ягоды</div>
+                </div>
+
+                <div class="day-card animate delay-5">
+                    <div class="day-header">
+                        <div class="day-number">6</div>
+                        <div class="day-name">Суббота</div>
+                    </div>
+                    <div class="meal"><span class="meal-time">Завтрак:</span> Омлет с овощами и авокадо</div>
+                    <div class="meal"><span class="meal-time">Обед:</span> Суп из чечевицы с зеленью</div>
+                    <div class="meal"><span class="meal-time">Ужин:</span> Запеченные кабачки с помидорами</div>
+                    <div class="meal"><span class="meal-time">Перекус:</span> Апельсин и грецкие орехи</div>
+                </div>
+
+                <div class="day-card animate delay-6">
+                    <div class="day-header">
+                        <div class="day-number">7</div>
+                        <div class="day-name">Воскресенье</div>
+                    </div>
+                    <div class="meal"><span class="meal-time">Завтрак:</span> Мюсли с йогуртом и фруктами</div>
+                    <div class="meal"><span class="meal-time">Обед:</span> Куриные котлеты на пару с овощами</div>
+                    <div class="meal"><span class="meal-time">Ужин:</span> Овощной суп-пюре с травами</div>
+                    <div class="meal"><span class="meal-time">Перекус:</span> Банан и арахисовая паста</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section id="tips" class="section">
+            <h2 class="section-title">Полезные советы 💡</h2>
+            <div class="tips-grid">
+                <div class="tip-card animate">
+                    <div class="tip-icon">
+                        <i class="fas fa-glass-water"></i>
+                    </div>
+                    <h3 class="tip-title">Пейте воду</h3>
+                    <p>Выпивайте 1.5-2 литра воды в день. Начинайте утро со стакана воды с лимоном!</p>
+                </div>
+
+                <div class="tip-card animate delay-1">
+                    <div class="tip-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="tip-title">Маленькие порции</h3>
+                    <p>Ешьте небольшими порциями 4-5 раз в день. Это улучшает пищеварение и обмен веществ.</p>
+                </div>
+
+                <div class="tip-card animate delay-2">
+                    <div class="tip-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="tip-title">Больше овощей</h3>
+                    <p>Половина вашего тарелки должна состоять из овощей. Они богаты витаминами и клетчаткой!</p>
+                </div>
+
+                <div class="tip-card animate delay-3">
+                    <div class="tip-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3 class="tip-title">Не ешьте перед сном</h3>
+                    <p>Последний прием пищи должен быть за 2-3 часа до сна. Это улучшает качество сна.</p>
+                </div>
+                <div class="tip-card animate delay-4">
+                    <div class="tip-icon">
+                        <i class="fas fa-plate-wheat"></i>
+                    </div>
+                    <h3 class="tip-title">Заготовки</h3>
+                    <p>Планируйте и готовьте заранее. В выходные можно отварить крупы, приготовить фарш, помыть и нарезать овощи для салатов. Это сэкономит время в будни..</p>
+                </div>
+            </div>
+        </section>
+    </main>
+<!-- About Section -->
+<section id="about" class="section">
+    <h2 class="section-title">О сайте🧡</h2>
+    <div class="tips-grid">
+        <div class="tip-card animate">
+            <div class="tip-icon">
+                <i class="fas fa-glass-water"></i>
+    <!-- About -->
+    <section id="about" class="section">
+    <about>
+        <div class="container">
+            <div class="footer-content">
+                <p>🌿 Проект Данилевской Юлии</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll animation to elements
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.day-card, .tip-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
